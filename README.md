@@ -30,3 +30,12 @@ Day 3.
   - It then checks if the ``BitmapDeviceContext`` is ``NULL`` and creates a new one if it is.
   - Then ``Win32ResizeDIBSection()`` configures ``BitmapInfo`` based on the function parameters.
   - Then it creates a new ``BitmapHandle``.
+  
+Day 4.
+- Refactoring:
+ - Removed ``BitmapHandle`` and ``BitmapDeviceContext``.
+ - Removed code to check if ``BitmapHandle`` exists and if ``BitmapDeviceContext`` doesn't exist.
+ - Removed call to ``CreateDIBSection()`` for a new ``BitmapHandle``.
+- Changed ``BitmapInfo.bmiHeader.biWidth`` to a negative value, to put the screen coordinate origin at the top-left
+- Created a temporary ``RenderWeirdGradient()`` function to map the the last 8 bits of the pixel X and Y coordinates to their blue and green values, respectively.
+- Moved the call of ``RenderWeirdGradient()`` to the ``while(Running)`` loop inside ``WinMain()`` and changed the ``XOffset`` incrementally to achieve animation.
