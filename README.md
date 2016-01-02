@@ -39,3 +39,9 @@ Day 4.
 - Changed ``BitmapInfo.bmiHeader.biWidth`` to a negative value, to put the screen coordinate origin at the top-left
 - Created a temporary ``RenderWeirdGradient()`` function to map the the last 8 bits of the pixel X and Y coordinates to their blue and green values, respectively.
 - Moved the call of ``RenderWeirdGradient()`` to the ``while(Running)`` loop inside ``WinMain()`` and changed the ``XOffset`` incrementally to achieve animation.
+
+Day 5.
+- Moved the global variables (``BitmapInfo``, ``BitmapMemory``, ``BitmapWidth``, ``BitmapHeight``, and ``BytesPerPixel``) to a ``win32_offscreen_buffer`` ``struct``.
+- Created a ``win32_window_dimension`` struct to hold ``Width`` and ``Height`` integers, and allow the new ``Win32GetWindowDimension()`` function to return both variables together.
+- Moved the code that was in the ``WM_SIZE`` case of ``Win32MainWindowCallback()`` to ``WinMain()``.
+ - This made the window resize the animated pattern with it, rather than the pattern size being independent of the window size.
